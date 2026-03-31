@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcards from Mars | Cinematic Interaction</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23D84B2A' stroke-width='6'/><circle cx='50' cy='50' r='20' fill='%23D84B2A'/><circle cx='85' cy='25' r='5' fill='%23ffffff'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="loading">
+    <!-- Global Atmospheric Layers -->
+    <div class="noise-overlay"></div>
+    <canvas id="dust-particles"></canvas>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">ARES // 04</div>
+        <div class="nav-links">
+            <a href="#orbital" class="nav-link hover-reveal">Orbit</a>
+            <a href="#signal" class="nav-link hover-reveal">Signal</a>
+            <a href="#gallery-pinned" class="nav-link hover-reveal">Gallery</a>
+            <a href="#artifact" class="nav-link hover-reveal">Anomaly</a>
+            <a href="#" class="cta-button magnetic">Join Expedition</a>
+        </div>
+    </nav>
+
+    <!-- Main Content (Lenis Scroll Container) -->
+        <main id="smooth-wrapper">
+            <div id="smooth-content">
+                
+                <!-- SECTION 0: ORBITAL ENTRY -->
+                <section class="orbital-entry" id="orbital">
+                    <div class="planet-container">
+                        <!-- Abstract planet texture using Unsplash -->
+                        <div class="planet-sphere">
+                            <img src="./assets/images/earth.png" alt="Planet Earth">
+                        </div>
+                        <div class="planet-glow"></div>
+                        <div class="planet-shadow"></div>
+                    </div>
+                    <div class="orbital-text text-reveal">
+                        <p class="fade-up-target monospace text-muted">APPROACHING SECTOR 7G</p>
+                        <h1 class="split-text-target">DESCENT</h1>
+                    </div>
+                </section>
+
+                <!-- SECTION 1: HERO -->
+                <section class="hero" id="hero">
+                    <div class="hero-bg" data-speed="0.7">
+                        <img src="./assets/images/mars-orbit.jpg" alt="Mars Surface">
+                        <div class="overlay gradient-dark"></div>
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-headline">
+                            <h1 class="split-text-target">POSTCARDS</h1>
+                            <h1 class="split-text-target accent-text" data-content="FROM MARS">FROM MARS</h1>
+                        </div>
+                        <div class="hero-subtext">
+                            <p class="fade-up-target">Experience the crimson dawn of a new frontier. A visual journey through the silence of the red dust.</p>
+                            <div class="fade-up-target cta-wrap mt-4">
+                                <button class="primary-btn magnetic">Initiate Landing</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 1.5: SIGNAL TRANSMISSION -->
+                <section class="signal-section" id="signal">
+                    <div class="signal-container">
+                        <p class="monospace scramble-target text-accent" data-text="[ ENCRYPTED TRANSMISSION INTERCEPTED ]">[ ENCRYPTED TRANSMISSION INTERCEPTED ]</p>
+                        <h2 class="scramble-target massive-text" data-text="NO SIGNAL">NO SIGNAL</h2>
+                        <div class="signal-lines"></div>
+                    </div>
+                </section>
+
+                <!-- SECTION 2: PINNED HORIZONTAL GALLERY -->
+                <section class="gallery-pinned" id="gallery-pinned">
+                    <div class="pinned-container">
+                        <div class="pinned-header">
+                            <h2 class="split-text-target">THE DUST SECTOR</h2>
+                        </div>
+                        
+                        <div class="cards-wrapper">
+                            <div class="horizontal-scroll-container">
+                                <!-- Card 1 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/dust-card-1.jpg" alt="Sector 2">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Olympus Mons</h3>
+                                        <p>12:05:44 SOL</p>
+                                    </div>
+                                </div>
+                                <!-- Card 2 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/dust-card-3.jpg" alt="Sector 3">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Jezero Crater</h3>
+                                        <p>18:41:09 SOL</p>
+                                    </div>
+                                </div>
+                                <!-- Card 3 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/dust-card-4.jpg" alt="Sector 4">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Gale Crater</h3>
+                                        <p>22:15:00 SOL</p>
+                                    </div>
+                                </div>
+                                <!-- Card 4 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/dust-card-5.jpg" alt="Sector 5">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Olympus Mons</h3>
+                                        <p>03:45:22 SOL</p>
+                                    </div>
+                                </div>
+                                <!-- Card 5 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/dust-card-6.jpg" alt="Sector 6">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Noctis Labyrinthus</h3>
+                                        <p>11:30:44 SOL</p>
+                                    </div>
+                                </div>
+                                <!-- Card 6 -->
+                                <div class="card">
+                                    <div class="card-img-wrap">
+                                        <img src="./assets/images/mars-surface-2.jpg" alt="Sector 7">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>Hellas Planitia</h3>
+                                        <p>19:12:05 SOL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 2.5: ARTIFACT DISCOVERY -->
+                <section class="artifact-section" id="artifact">
+                    <div class="artifact-container">
+                        <div class="artifact-text text-reveal">
+                            <p class="monospace text-accent fade-up-target">LOG // 0492-X</p>
+                            <h2 class="split-text-target">ANOMALY</h2>
+                            <p class="fade-up-target mt-4">Sensors indicate a non-geological structure buried deep within the regolith. Its smooth, impossibly perfect geometry defies all natural erosion patterns.</p>
+                        </div>
+                        <div class="artifact-visual">
+                            <div class="artifact-object">
+                                <model-viewer 
+                                    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
+                                    alt="3D Anomaly"
+                                    auto-rotate 
+                                    auto-rotate-delay="0"
+                                    rotation-per-second="15deg"
+                                    camera-controls
+                                    disable-zoom
+                                    exposure="0.8"
+                                    shadow-intensity="2">
+                                </model-viewer>
+                                <div class="artifact-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: ENDLESS TERRAIN PARALLAX -->
+                <section class="terrain-parallax">
+                    <div class="terrain-layer layer-bg" data-speed="0.2"></div>
+                    <div class="terrain-layer layer-mid" data-speed="0.5"></div>
+                    <div class="terrain-layer layer-fg" data-speed="0.9"></div>
+                    <div class="terrain-content">
+                        <h2 class="split-text-target">ENDLESS</h2>
+                        <h2 class="split-text-target accent-text" data-content="DESOLATION">DESOLATION</h2>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: STORY -->
+                <section class="story-section" id="story">
+                    <div class="story-container">
+                        <div class="story-text">
+                            <h2 class="split-text-target">A</h2>
+                            <h2 class="split-text-target">SILENT</h2>
+                            <h2 class="split-text-target">HORIZON</h2>
+                            <p class="fade-up-target">Beyond the rust-colored dunes lies an infinite expanse of possibility. The Martian landscape challenges everything we know about existence, forcing us to adapt, evolve, and redefine human resilience in the face of absolute isolation.</p>
+                        </div>
+                        <div class="story-images">
+                            <div class="story-img img-back parallax-element" data-speed="0.8">
+                                <img src="./assets/images/space-base.jpg" alt="Base">
+                            </div>
+                            <div class="story-img img-front parallax-element" data-speed="1.2">
+                                <img src="./assets/images/rocket.jpg" alt="Rocket">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FINAL TRANSMISSION CTA (Replaces Footer) -->
+                <section class="final-cta">
+                    <div class="final-bg" data-speed="0.5">
+                        <video src="./assets/videos/nebula-animation-generation.mp4" autoplay loop muted playsinline></video>
+                        <div class="overlay final-gradient"></div>
+                    </div>
+                    <div class="final-content text-reveal">
+                        <h2 class="split-text-target">AWAITING</h2>
+                        <h2 class="split-text-target accent-text" data-content="COMMAND">COMMAND</h2>
+                        <div class="fade-up-target mt-8">
+                            <button class="primary-btn magnetic">End Transmission</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+    <!-- JS Libraries -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

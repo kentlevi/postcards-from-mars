@@ -1,0 +1,329 @@
+/* ==========================================================================
+   CSS Variables & Reset
+   ========================================================================== */
+:root {
+    --bg-color: #050505;
+    --text-color: #f0f0f0;
+    --text-muted: #888888;
+    --accent: #d84b2a; 
+    --accent-glow: rgba(216, 75, 42, 0.4);
+    --font-primary: 'Outfit', sans-serif;
+    --pad-x: 5vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    body, a, button { cursor: none; }
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================================================
+   Global Atmospheric Effects
+   ========================================================================== */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.05;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    mix-blend-mode: overlay;
+}
+
+#dust-particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==========================================================================
+   Custom Cursor
+   ========================================================================== */
+.cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    background: var(--text-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+}
+
+.cursor-follower {
+    position: fixed;
+    top: 0; left: 0;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    margin: -17px 0 0 -17px;
+    will-change: transform;
+    transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-follower.active {
+    width: 80px; height: 80px;
+    margin: -37px 0 0 -37px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* ==========================================================================
+   Typography & Utilities
+   ========================================================================== */
+h1 { font-size: clamp(4rem, 12vw, 12rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; }
+h2 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; }
+p { font-size: clamp(1rem, 1.2vw, 1.25rem); line-height: 1.6; font-weight: 300; color: var(--text-muted); }
+.monospace { font-family: monospace; letter-spacing: 0.2em; font-size: 0.85rem; }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent); }
+.massive-text { font-size: clamp(4rem, 15vw, 15rem); font-weight: 900; white-space: nowrap; }
+
+.accent-text {
+    color: rgba(216, 75, 42, 0.3); /* Translucent red core */
+    -webkit-text-stroke: 1px var(--text-color);
+    text-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent-glow);
+    position: relative;
+    display: inline-block;
+}
+
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.word { display: inline-block; white-space: nowrap; margin-right: 0.25em; }
+.line { overflow: hidden; position: relative; display: inline-block; }
+.char { display: inline-block; will-change: transform; }
+
+/* ==========================================================================
+   Navigation & Buttons
+   ========================================================================== */
+.nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem var(--pad-x);
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.nav-logo { font-weight: 600; letter-spacing: 0.1em; font-size: 1.1rem; }
+.nav-links { display: flex; align-items: center; gap: 3rem; }
+.nav-link {
+    color: var(--text-color); text-decoration: none; font-weight: 400; text-transform: uppercase;
+    font-size: 0.85rem; letter-spacing: 0.1em; position: relative;
+}
+.nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px;
+    background: var(--text-color); transform: scaleX(0); transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.cta-button, .primary-btn {
+    appearance: none; background: transparent; color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2); padding: 0.8rem 1.8rem;
+    border-radius: 40px; font-family: var(--font-primary); font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.4s ease;
+    text-decoration: none; display: inline-block; position: relative; overflow: hidden;
+}
+.primary-btn { font-size: 1rem; padding: 1rem 2.5rem; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+.cta-button:hover, .primary-btn:hover {
+    border-color: var(--accent); background: rgba(216, 75, 42, 0.1); box-shadow: 0 0 20px rgba(216, 75, 42, 0.2);
+}
+
+/* ==========================================================================
+   0. Orbital Entry
+   ========================================================================== */
+.orbital-entry {
+    height: 100vh; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}
+.planet-container {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw; height: 50vw;
+    border-radius: 50%;
+    will-change: transform;
+}
+.planet-sphere {
+    width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+    mask-image: radial-gradient(white, black);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.planet-sphere img {
+    width: 100%; height: 100%; object-fit: contain; filter: sepia(1) hue-rotate(-50deg) saturate(3) brightness(0.8);
+}
+.planet-glow {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 50%; box-shadow: 0 0 100px 20px var(--accent-glow);
+    mix-blend-mode: screen; pointer-events: none; opacity: 0.6;
+}
+.planet-shadow {
+    position: absolute; top: -10%; left: -10%; width: 120%; height: 120%;
+    border-radius: 50%; box-shadow: inset -50px -50px 100px rgba(0,0,0,0.9);
+    pointer-events: none;
+}
+.orbital-text {
+    position: relative; z-index: 2; text-align: center; pointer-events: none;
+    mix-blend-mode: difference;
+}
+
+/* ==========================================================================
+   1. Hero Section
+   ========================================================================== */
+.hero {
+    position: relative; height: 100vh; width: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: var(--pad-x); padding-bottom: 5vh; overflow: hidden;
+    z-index: 1;
+}
+.hero-bg { position: absolute; top: -15%; left: -5%; width: 110%; height: 130%; z-index: -1; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.gradient-dark { background: linear-gradient(to top, var(--bg-color) 0%, rgba(5,5,5,0.2) 60%, rgba(5,5,5,0.6) 100%); }
+.hero-content { display: grid; grid-template-columns: 1fr; gap: 2rem; position: relative; z-index: 2; }
+.hero-subtext { max-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ==========================================================================
+   1.5 Signal Transmission
+   ========================================================================== */
+.signal-section {
+    min-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center;
+    background: transparent; position: relative; z-index: 2; overflow: hidden;
+}
+.signal-container { text-align: center; position: relative; z-index: 2; padding: 0 var(--pad-x); }
+.scramble-target { opacity: 0; }
+
+/* ==========================================================================
+   2. Gallery Pinned Section
+   ========================================================================== */
+.gallery-pinned {
+    height: 100vh; position: relative; background: var(--bg-color);
+    padding: var(--pad-x) 0; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    z-index: 2;
+}
+.pinned-container { padding-left: var(--pad-x); height: 80%; display: flex; flex-direction: column; justify-content: center; }
+.pinned-header { margin-bottom: 4rem; }
+.cards-wrapper { width: 100%; overflow: visible; }
+.horizontal-scroll-container { display: flex; gap: 3vw; width: max-content; will-change: transform; }
+.card { width: clamp(300px, 30vw, 450px); height: clamp(400px, 50vh, 600px); position: relative; }
+.card-img-wrap { width: 100%; height: 100%; border-radius: 4px; overflow: hidden; position: relative; }
+.card-img-wrap::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: inset 0 0 50px rgba(0,0,0,0.5); transition: opacity 0.5s ease;
+}
+.card img { will-change: transform; transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 0.5s ease; transform: scale(1.05); filter: grayscale(80%) contrast(1.1); }
+.card:hover img { transform: scale(1); filter: grayscale(10%) contrast(1.1); }
+.card-info { position: absolute; bottom: -40px; left: 0; display: flex; justify-content: space-between; width: 100%; opacity: 0.6; }
+
+/* ==========================================================================
+   2.5 Artifact Discovery
+   ========================================================================== */
+.artifact-section {
+    min-height: 100vh; width: 100%; display: flex; align-items: center;
+    background: transparent; position: relative; z-index: 2; overflow: hidden;
+    padding: var(--pad-x);
+}
+.artifact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; width: 100%; }
+.artifact-text { max-width: 500px; }
+.artifact-visual { position: relative; height: 70vh; display: flex; align-items: center; justify-content: center; }
+.artifact-object { position: relative; width: 300px; height: 500px; will-change: transform; }
+model-viewer {
+    width: 100%; height: 100%;
+    transform: scale(0.9);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: grab;
+}
+model-viewer:active { cursor: grabbing; }
+.artifact-object:hover model-viewer { transform: scale(1); }
+.artifact-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 120%; height: 120%; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.6s ease; pointer-events: none; mix-blend-mode: screen;
+}
+.artifact-object:hover .artifact-glow { opacity: 0.8; }
+
+/* ==========================================================================
+   3. Endless Terrain Parallax
+   ========================================================================== */
+.terrain-parallax {
+    position: relative; height: 100vh; overflow: hidden; background: #000; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+}
+.terrain-layer {
+    position: absolute; top: -5%; left: -5%; width: 110%; height: 140%;
+    background-size: cover; background-position: center; will-change: transform;
+}
+.layer-bg { background-image: url('./assets/images/mars-surface-3.jpg'); filter: blur(5px) brightness(0.3); }
+.layer-mid { background-image: url('./assets/images/mars-orbit.jpg'); filter: blur(1px) brightness(0.5); background-position: center; }
+.layer-fg { background-image: url('./assets/images/mars-surface-1.jpg'); filter: brightness(0.6); background-position: bottom; }
+.terrain-content { position: relative; z-index: 5; text-align: center; mix-blend-mode: screen; pointer-events: none; }
+
+/* ==========================================================================
+   4. Story Section
+   ========================================================================== */
+.story-section { position: relative; padding: 15vh var(--pad-x); background: transparent; min-height: 100vh; display: flex; align-items: center; z-index: 2; }
+.story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; width: 100%; align-items: center; }
+.story-text { width: 100%; max-width: none; position: relative; z-index: 100; }
+.story-text h2 { margin-bottom: 0.5rem; line-height: 1; }
+.story-text p { margin-top: 1.5rem; }
+.story-images { position: relative; height: 80vh; z-index: 1; }
+.story-img { position: absolute; border-radius: 4px; overflow: hidden; z-index: 1; }
+.img-back { top: 0; right: 0; width: 80%; height: 80%; filter: brightness(0.6); z-index: 1; }
+.img-front { bottom: 0; left: -10%; width: 60%; height: 60%; box-shadow: 0 30px 60px rgba(0,0,0,0.8); z-index: 2; }
+
+/* ==========================================================================
+   Final CTA
+   ========================================================================== */
+.final-cta {
+    position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    overflow: hidden; z-index: 1; background: #000;
+}
+.final-bg { position: absolute; top: -20%; left: 0; width: 100%; height: 140%; z-index: -1; filter: grayscale(1); }
+.final-bg video { width: 100%; height: 100%; object-fit: cover; }
+.final-gradient { background: linear-gradient(to top, #000 0%, transparent 50%, #000 100%); width: 100%; height: 100%; }
+.final-content { text-align: center; position: relative; z-index: 2; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .story-container, .artifact-container { grid-template-columns: 1fr; }
+    .story-images { height: 50vh; margin-top: 4rem; }
+    .hero-content { gap: 1rem; }
+    .cards-wrapper { padding-top: 2rem; }
+    .planet-container { width: 90vw; height: 90vw; }
+}
