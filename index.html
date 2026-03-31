@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A cinematic, GSAP-powered orbital scroll experience exploring Mars.">
     <title>Postcards from Mars | Cinematic Interaction</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23D84B2A' stroke-width='6'/><circle cx='50' cy='50' r='20' fill='%23D84B2A'/><circle cx='85' cy='25' r='5' fill='%23ffffff'/></svg>">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="./assets/images/earth.png">
+    <link rel="preload" as="image" href="./assets/images/mars-orbit.jpg">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="loading">
     <!-- Global Atmospheric Layers -->
@@ -38,7 +43,7 @@
                     <div class="planet-container">
                         <!-- Abstract planet texture using Unsplash -->
                         <div class="planet-sphere">
-                            <img src="./assets/images/earth.png" alt="Planet Earth">
+                            <img src="./assets/images/earth.png" alt="Planet Earth" fetchpriority="high" decoding="sync">
                         </div>
                         <div class="planet-glow"></div>
                         <div class="planet-shadow"></div>
@@ -52,7 +57,7 @@
                 <!-- SECTION 1: HERO -->
                 <section class="hero" id="hero">
                     <div class="hero-bg" data-speed="0.7">
-                        <img src="./assets/images/mars-orbit.jpg" alt="Mars Surface">
+                        <img src="./assets/images/mars-orbit.jpg" alt="Mars Surface Orbital View" fetchpriority="high" decoding="sync">
                         <div class="overlay gradient-dark"></div>
                     </div>
                     <div class="hero-content">
@@ -90,7 +95,7 @@
                                 <!-- Card 1 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/dust-card-1.jpg" alt="Sector 2">
+                                        <img src="./assets/images/dust-card-1.jpg" alt="Sector 2" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Olympus Mons</h3>
@@ -100,7 +105,7 @@
                                 <!-- Card 2 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/dust-card-3.jpg" alt="Sector 3">
+                                        <img src="./assets/images/dust-card-3.jpg" alt="Sector 3" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Jezero Crater</h3>
@@ -110,7 +115,7 @@
                                 <!-- Card 3 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/dust-card-4.jpg" alt="Sector 4">
+                                        <img src="./assets/images/dust-card-4.jpg" alt="Sector 4" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Gale Crater</h3>
@@ -120,7 +125,7 @@
                                 <!-- Card 4 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/dust-card-5.jpg" alt="Sector 5">
+                                        <img src="./assets/images/dust-card-5.jpg" alt="Sector 5" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Olympus Mons</h3>
@@ -130,7 +135,7 @@
                                 <!-- Card 5 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/dust-card-6.jpg" alt="Sector 6">
+                                        <img src="./assets/images/dust-card-6.jpg" alt="Sector 6" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Noctis Labyrinthus</h3>
@@ -140,7 +145,7 @@
                                 <!-- Card 6 -->
                                 <div class="card">
                                     <div class="card-img-wrap">
-                                        <img src="./assets/images/mars-surface-2.jpg" alt="Sector 7">
+                                        <img src="./assets/images/mars-surface-2.jpg" alt="Sector 7" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-info">
                                         <h3>Hellas Planitia</h3>
@@ -164,7 +169,8 @@
                             <div class="artifact-object">
                                 <model-viewer 
                                     src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
-                                    alt="3D Anomaly"
+                                    alt="3D Anomaly Astronaut Model"
+                                    loading="lazy"
                                     auto-rotate 
                                     auto-rotate-delay="0"
                                     rotation-per-second="15deg"
@@ -201,10 +207,10 @@
                         </div>
                         <div class="story-images">
                             <div class="story-img img-back parallax-element" data-speed="0.8">
-                                <img src="./assets/images/space-base.jpg" alt="Base">
+                                <img src="./assets/images/space-base.jpg" alt="Martian Settlement Base" loading="lazy" decoding="async">
                             </div>
                             <div class="story-img img-front parallax-element" data-speed="1.2">
-                                <img src="./assets/images/rocket.jpg" alt="Rocket">
+                                <img src="./assets/images/rocket.jpg" alt="Expedition Recovery Rocket" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -213,7 +219,7 @@
                 <!-- FINAL TRANSMISSION CTA (Replaces Footer) -->
                 <section class="final-cta">
                     <div class="final-bg" data-speed="0.5">
-                        <video src="./assets/videos/nebula-animation-generation.mp4" autoplay loop muted playsinline></video>
+                        <video src="./assets/videos/nebula-animation-generation.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Cinematic Deep Space Background"></video>
                         <div class="overlay final-gradient"></div>
                     </div>
                     <div class="final-content text-reveal">

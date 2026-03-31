@@ -111,11 +111,25 @@ p { font-size: clamp(1rem, 1.2vw, 1.25rem); line-height: 1.6; font-weight: 300; 
 .massive-text { font-size: clamp(4rem, 15vw, 15rem); font-weight: 900; white-space: nowrap; }
 
 .accent-text {
-    color: rgba(216, 75, 42, 0.3); /* Translucent red core */
+    color: rgba(216, 75, 42, 0.4);
     -webkit-text-stroke: 1px var(--text-color);
-    text-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent-glow);
+    text-shadow: 0 0 15px rgba(216, 75, 42, 0.8); /* Tight, intense inner glow */
     position: relative;
     display: inline-block;
+}
+
+/* Cinematic volumetric fog glow, completely organic radial diffusion */
+.accent-text::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%; height: 300%;
+    background: radial-gradient(ellipse at center, rgba(216, 75, 42, 0.4) 0%, rgba(216, 75, 42, 0.15) 35%, transparent 75%);
+    filter: blur(40px); /* Obliterates borders, creates physical light bloom */
+    mix-blend-mode: screen; /* Additive light scattering */
+    pointer-events: none;
+    z-index: -1;
 }
 
 .mt-4 { margin-top: 1rem; }

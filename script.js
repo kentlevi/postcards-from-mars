@@ -298,11 +298,29 @@ function initAnimations() {
     });
 }
 
+// 6. Navigation Smooth Routing
+function initNavigation() {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href');
+            if (targetId !== '#' && currentLenis) {
+                e.preventDefault();
+                currentLenis.scrollTo(targetId, {
+                    offset: 0,
+                    duration: 2, // Smooth, slow cinematic pan
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            }
+        });
+    });
+}
+
 // Master Init
 window.addEventListener('load', () => {
     splitTextCustom();
-    initDustCanvas(); // New Dust Canvas
+    initDustCanvas(); // Stellar Canvas
     initLenis();
+    initNavigation(); // Bind Lenis routing to the header links
     initCursor();
     initAnimations();
 });
